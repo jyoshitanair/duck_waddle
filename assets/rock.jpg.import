@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bpjscmowq32xr"
-path.s3tc="res://.godot/imported/rock.jpg-ebcfb35311edf8c1982ae6fc44757443.s3tc.ctex"
+path.s3tc="res://.godot/imported/rock.jpg-cb9bb7e12d27b09003ab34efe7455b2f.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://images/rock.jpg"
-dest_files=["res://.godot/imported/rock.jpg-ebcfb35311edf8c1982ae6fc44757443.s3tc.ctex"]
+source_file="res://assets/rock.jpg"
+dest_files=["res://.godot/imported/rock.jpg-cb9bb7e12d27b09003ab34efe7455b2f.s3tc.ctex"]
 
 [params]
 

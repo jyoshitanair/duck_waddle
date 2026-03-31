@@ -61,7 +61,6 @@ func _on_diee_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player") and not body.dead:
 		body.dead = true
 		SilentWolf.Scores.save_score(Manager.player_name, int(Manager.score)).sw_save_score_complete
-		#var sw_result: Dictionary = await SilentWolf.Scores.save_score(Manager.player_name, int(Manager.score)).sw_save_score_complete
 		call_deferred("_change_scene")
 func _change_scene() -> void: 
 		if not is_inside_tree():

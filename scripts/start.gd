@@ -22,10 +22,14 @@ func _on_button_pressed() -> void:
 		get_tree().change_scene_to_file("res://scenes/main.tscn")
 		Manager.first = true 
 func check_name()-> bool:
+	if line_edit.text.strip_edges().to_lower() == "":
+		fail.text = "Don't be a sitting duck! Give me a name!"
+		return true
 	for score_data in SilentWolf.Scores.scores:
 			if score_data["player_name"].strip_edges().to_lower() ==  line_edit.text.strip_edges().to_lower():
 				return true
 	return false
+	fail.text = "That nam'es swimming somewhere else!"
 
 func _on_timer_timeout() -> void:
 	fail.hide()

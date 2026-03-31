@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://banmnlclrr1nw"]
 
-[ext_resource type="AudioStream" uid="uid://oh7mpbvqm3aj" path="res://images/loop.ogg" id="1_khwbh"]
+[ext_resource type="AudioStream" uid="uid://oh7mpbvqm3aj" path="res://assets/loop.ogg" id="1_khwbh"]
 [ext_resource type="Script" uid="uid://dst4wg1i5csit" path="res://scripts/MusicManager.gd" id="2_3e3qe"]
 
 [node name="Node3D" type="Node3D" unique_id=1666340873]

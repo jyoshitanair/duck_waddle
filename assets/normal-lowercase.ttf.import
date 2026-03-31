@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://dghpeoi5tfngd"
-path="res://.godot/imported/header.ttf-6f20de43f9a9d6c1c66e986894e8d0b0.fontdata"
+uid="uid://c8s1sbpiyxldk"
+path="res://.godot/imported/normal-lowercase.ttf-7f1347121cb1fce0c2feb03e0291cb71.fontdata"
 
 [deps]
 
-source_file="res://images/header.ttf"
-dest_files=["res://.godot/imported/header.ttf-6f20de43f9a9d6c1c66e986894e8d0b0.fontdata"]
+source_file="res://assets/normal-lowercase.ttf"
+dest_files=["res://.godot/imported/normal-lowercase.ttf-7f1347121cb1fce0c2feb03e0291cb71.fontdata"]
 
 [params]
 

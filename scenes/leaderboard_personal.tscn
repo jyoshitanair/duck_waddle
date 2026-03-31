@@ -1,9 +1,8 @@
 [gd_scene format=3 uid="uid://i84jk74ilrrq"]
 
-[ext_resource type="FontFile" uid="uid://dghpeoi5tfngd" path="res://images/header.ttf" id="1_6oetw"]
-[ext_resource type="Script" uid="uid://boh3toaqtt0w8" path="res://scripts/grid_container.gd" id="1_x58ji"]
-[ext_resource type="FontFile" uid="uid://c8s1sbpiyxldk" path="res://images/normal-lowercase.ttf" id="2_qehjm"]
-[ext_resource type="FontFile" uid="uid://sa6epl5kdmb3" path="res://images/normal.ttf" id="4_l3qp2"]
+[ext_resource type="FontFile" uid="uid://dghpeoi5tfngd" path="res://assets/header.ttf" id="1_6oetw"]
+[ext_resource type="FontFile" uid="uid://c8s1sbpiyxldk" path="res://assets/normal-lowercase.ttf" id="2_qehjm"]
+[ext_resource type="FontFile" uid="uid://sa6epl5kdmb3" path="res://assets/normal.ttf" id="4_l3qp2"]
 
 [sub_resource type="Theme" id="Theme_l0g0y"]
 default_font = ExtResource("1_6oetw")
@@ -12,8 +11,89 @@ default_font = ExtResource("1_6oetw")
 default_font = ExtResource("2_qehjm")
 default_font_size = 36
 
+[sub_resource type="GDScript" id="GDScript_4dsgv"]
+script/source = "extends GridContainer
+
+var player_list_with_pos = []
+var pos 
+@onready var text: Label = $\"../../text\"
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	var sw_result: Dictionary = await SilentWolf.Scores.get_scores(0).sw_get_scores_complete
+	player_list_with_pos = sort_players_and_add_position(SilentWolf.Scores.scores)
+	await add_players_to_grid(player_list_with_pos)
+	text.text = \"You are %d%s place out of %d ducks. Quack. \"%[pos,get_suffix(pos),SilentWolf.Scores.scores.size()]
+func sort_players_and_add_position(player_list): 
+	var position = 1
+	for player in player_list:
+		player[\"position\"]= position
+		position += 1
+	return player_list
+func add_players_to_grid(player_list)-> void: 
+	var pos_vbox = VBoxContainer.new()
+	var name_vbox = VBoxContainer.new()
+	var score_vbox = VBoxContainer.new()
+	#position
+	for score_data in player_list_with_pos:
+		var pos_label = Label.new()
+		var name = score_data[\"player_name\"]
+		pos_label.text = str(score_data[\"position\"])
+		if name == Manager.player_name:
+			pos = int(score_data[\"position\"])
+			pos_label.add_theme_color_override(\"font_color\",Color.CRIMSON)
+		pos_label.show()
+		pos_vbox.add_child(pos_label)
+	add_child(pos_vbox)
+	#name
+	for score_data in player_list_with_pos:
+		var name_label = Label.new()
+		var name = score_data[\"player_name\"]
+		name_label.text = str(name)
+		if name == Manager.player_name:
+			name_label.add_theme_color_override(\"font_color\",Color.CRIMSON)	
+		name_label.show()
+		name_vbox.add_child(name_label)
+	add_child(name_vbox)
+	#score
+	for score_data in player_list_with_pos:
+		var score_label = Label.new()
+		var name = score_data[\"player_name\"]
+		score_label.text = str(score_data[\"score\"])
+		if name == Manager.player_name:
+			score_label.add_theme_color_override(\"font_color\",Color.CRIMSON)
+		score_label.show()
+		score_vbox.add_child(score_label)
+	add_child(score_vbox)
+	
+func _on_button_pressed() -> void:
+	get_tree().change_scene_to_file(\"res://scenes/game_over_page.tscn\")
+func get_suffix(position)-> String: 
+	if (position % 100) in [11,12,13]: #english irregulars...sigh
+		return \"th\"
+	else:
+		match (position%10):
+			1: return \"st\"
+			2: return \"nd\"
+			3: return \"rd\"
+			_: return \"th\"
+"
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5qhfk"]
 bg_color = Color(0.04252565, 0.15476197, 0.27218974, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6oetw"]
+bg_color = Color(0.019547263, 0.09462231, 0.17936745, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qehjm"]
+bg_color = Color(0.113506, 0.297551, 0.4952932, 1)
 corner_radius_top_left = 30
 corner_radius_top_right = 30
 corner_radius_bottom_right = 30
@@ -66,7 +146,7 @@ size_flags_vertical = 3
 theme_override_constants/h_separation = 221
 theme_override_constants/v_separation = 30
 columns = 3
-script = ExtResource("1_x58ji")
+script = SubResource("GDScript_4dsgv")
 
 [node name="Button" type="Button" parent="." unique_id=855004925]
 offset_left = 20.0
@@ -76,6 +156,9 @@ offset_bottom = 63.0
 theme_override_fonts/font = ExtResource("4_l3qp2")
 theme_override_font_sizes/font_size = 11
 theme_override_styles/normal = SubResource("StyleBoxFlat_5qhfk")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_6oetw")
+theme_override_styles/hover = SubResource("StyleBoxFlat_qehjm")
+theme_override_styles/focus = SubResource("StyleBoxFlat_5qhfk")
 text = "back?"
 
 [node name="text" type="Label" parent="." unique_id=1761232312]

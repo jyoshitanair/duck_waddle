@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dgwep0tmaxkir" path="res://scripts/log.gd" id="1_spugk"]
 [ext_resource type="PackedScene" uid="uid://euq33sro0d4l" path="res://blender/rock.glb" id="2_pt1ea"]
-[ext_resource type="Texture2D" uid="uid://bpjscmowq32xr" path="res://images/rock.jpg" id="3_k0uux"]
+[ext_resource type="Texture2D" uid="uid://bpjscmowq32xr" path="res://assets/rock.jpg" id="3_k0uux"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vx63x"]
 diffuse_mode = 3

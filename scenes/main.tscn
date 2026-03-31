@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://jfx1cuvxvl17" path="res://scenes/player.tscn" id="2_sugp2"]
 [ext_resource type="PackedScene" uid="uid://cx7m4rlp80kv6" path="res://scenes/log.tscn" id="3_sugp2"]
 [ext_resource type="Script" uid="uid://cpuk1qietnfcp" path="res://scripts/label.gd" id="5_tbgi4"]
+[ext_resource type="FontFile" uid="uid://sa6epl5kdmb3" path="res://assets/normal.ttf" id="5_tefeu"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0wfyh"]
 sky_top_color = Color(0.5878508, 0.65932626, 0.90326893, 1)
@@ -65,6 +66,8 @@ offset_bottom = 64.0
 layout_mode = 0
 offset_right = 116.0
 offset_bottom = 46.0
+theme_override_fonts/font = ExtResource("5_tefeu")
+theme_override_font_sizes/font_size = 10
 text = "Score: 0"
 horizontal_alignment = 1
 vertical_alignment = 1
