@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://bea6tanv4rirp"]
+
+[ext_resource type="PackedScene" uid="uid://big3wjum4ud7" path="res://scenes/world.tscn" id="1_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://chiwxfdhk5a3u" path="res://scenes/water.tscn" id="1_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://jfx1cuvxvl17" path="res://scenes/player.tscn" id="2_sugp2"]
+[ext_resource type="PackedScene" uid="uid://cx7m4rlp80kv6" path="res://scenes/log.tscn" id="3_sugp2"]
+[ext_resource type="Script" uid="uid://cpuk1qietnfcp" path="res://scripts/label.gd" id="5_tbgi4"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0wfyh"]
+sky_top_color = Color(0.5878508, 0.65932626, 0.90326893, 1)
+sky_horizon_color = Color(0.47453484, 0.7629368, 1.32, 1)
+ground_bottom_color = Color(0.19761267, 0.32030392, 0.47439247, 1)
+ground_horizon_color = Color(0.6899211, 0.8000872, 1, 1)
+
+[sub_resource type="Sky" id="Sky_ig7tw"]
+sky_material = SubResource("ProceduralSkyMaterial_0wfyh")
+
+[sub_resource type="Environment" id="Environment_sugp2"]
+background_mode = 2
+sky = SubResource("Sky_ig7tw")
+tonemap_mode = 2
+glow_enabled = true
+glow_intensity = 6.9
+
+[node name="Node3D" type="Node3D" unique_id=795811093]
+
+[node name="Node3D" parent="." unique_id=1344051222 instance=ExtResource("1_jyhfs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.16053, -82.15059, -1270.7135)
+
+[node name="world!!" parent="." unique_id=667664859 instance=ExtResource("1_0wfyh")]
+
+[node name="player" parent="." unique_id=53959573 instance=ExtResource("2_sugp2")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 40, 3.912, 6.142)
+
+[node name="Camera3D" type="Camera3D" parent="player" unique_id=1549600621]
+transform = Transform3D(0.99920267, 0.035840515, 0.017592723, -0.039507832, 0.8240151, 0.56518877, 0.005759985, -0.5654332, 0.824774, -1.0306307, 25.16378, 47.485603)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=41866218]
+environment = SubResource("Environment_sugp2")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=622697131]
+transform = Transform3D(0.4702447, -0.35793817, -0.80669117, -0.3134503, -0.9222034, 0.22647274, -0.8249962, 0.14635997, -0.5458573, -14.890338, 21.53594, -11.226347)
+light_color = Color(0.06905232, 0.42943424, 0.6416454, 1)
+light_energy = 2.25
+shadow_enabled = true
+directional_shadow_max_distance = 4096.0
+
+[node name="log" parent="." unique_id=432282748 groups=["log"] instance=ExtResource("3_sugp2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 553.9042, 0)
+
+[node name="Control" type="Control" parent="." unique_id=29253991]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="score_panel" type="Panel" parent="Control" unique_id=154377037]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 18.0
+offset_right = 146.0
+offset_bottom = 64.0
+
+[node name="Label" type="Label" parent="Control/score_panel" unique_id=394842154]
+layout_mode = 0
+offset_right = 116.0
+offset_bottom = 46.0
+text = "Score: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("5_tbgi4")

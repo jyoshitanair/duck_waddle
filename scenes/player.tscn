@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://jfx1cuvxvl17"]
+
+[ext_resource type="Script" uid="uid://cdw3fbpplwk0p" path="res://scripts/player.gd" id="1_4flbx"]
+[ext_resource type="PackedScene" uid="uid://c1n3fdtmeg15c" path="res://blender/Untitled.glb" id="2_qhqgy"]
+[ext_resource type="Texture2D" uid="uid://b43luknn8xppx" path="res://images/feather-dark.png" id="3_dqkch"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qlg0r"]
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.63375676, 0.6337568, 0.63375676, 1)
+albedo_texture = ExtResource("3_dqkch")
+albedo_texture_force_srgb = true
+emission_enabled = true
+emission = Color(0.37413925, 0.37413928, 0.37413922, 1)
+backlight_enabled = true
+backlight = Color(0.9457825, 0.7263482, 0.5190512, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_onrkg"]
+size = Vector3(3.5, 4.1, 7)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3vyb7"]
+size = Vector3(2.5, 3.9, 6.2000003)
+
+[node name="player" type="CharacterBody3D" unique_id=53959573]
+script = ExtResource("1_4flbx")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=380184745]
+transform = Transform3D(-0.39874905, -0.7941974, 0.45853, 0, 0.49999997, 0.86602545, -0.9170601, 0.34532684, -0.19937451, 0, 0, 0)
+light_color = Color(0.17137074, 0.113297336, 0.035658617, 1)
+light_energy = 2.25
+shadow_enabled = true
+directional_shadow_max_distance = 4096.0
+
+[node name="Untitled" parent="." unique_id=1713293197 instance=ExtResource("2_qhqgy")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="Roundcube" parent="Untitled" index="0" unique_id=1092711850]
+surface_material_override/1 = SubResource("StandardMaterial3D_qlg0r")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=783995082]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.042871, 2.0170534, -0.48032206)
+shape = SubResource("BoxShape3D_onrkg")
+
+[node name="detection" type="Area3D" parent="." unique_id=1944201989]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="detection" unique_id=858956585]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1500001, 0.34999955, -0.3999998)
+shape = SubResource("BoxShape3D_3vyb7")
+
+[connection signal="body_entered" from="detection" to="." method="_on_detection_body_entered"]
+
+[editable path="Untitled"]

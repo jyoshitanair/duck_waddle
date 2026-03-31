@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://bigtsyx67mwd3"]
+
+[ext_resource type="Script" uid="uid://bsncidt341vg0" path="res://scripts/start.gd" id="1_jaeev"]
+[ext_resource type="FontFile" uid="uid://dghpeoi5tfngd" path="res://images/header.ttf" id="2_0auqf"]
+[ext_resource type="FontFile" uid="uid://c8s1sbpiyxldk" path="res://images/normal-lowercase.ttf" id="3_y16t7"]
+[ext_resource type="FontFile" uid="uid://sa6epl5kdmb3" path="res://images/normal.ttf" id="4_4ge6i"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u80x2"]
+bg_color = Color(0.67660433, 0.5834665, 0.47113985, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tn317"]
+bg_color = Color(0.54642946, 0.39290366, 0.22106901, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[node name="Start" type="Node2D" unique_id=1812675818]
+script = ExtResource("1_jaeev")
+
+[node name="Panel" type="Panel" parent="." unique_id=612756161]
+offset_right = 1153.0
+offset_bottom = 646.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_u80x2")
+
+[node name="Label" type="Label" parent="." unique_id=1105714704]
+offset_left = 13.0
+offset_top = 40.0
+offset_right = 1166.0
+offset_bottom = 290.0
+theme_override_colors/font_color = Color(0.2937945, 0.14045364, 0.024571495, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.8780573, 0.52351373, 0.7453691, 1)
+theme_override_fonts/font = ExtResource("2_0auqf")
+theme_override_font_sizes/font_size = 134
+text = "Duck Waddle!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="." unique_id=1751211655]
+offset_left = 136.0
+offset_top = 328.0
+offset_right = 1030.0
+offset_bottom = 438.0
+theme_override_fonts/font = ExtResource("3_y16t7")
+theme_override_font_sizes/font_size = 50
+placeholder_text = "  enter name here?"
+max_length = 20
+
+[node name="Button" type="Button" parent="." unique_id=92769020]
+offset_left = 133.0
+offset_top = 523.0
+offset_right = 306.0
+offset_bottom = 588.0
+theme_override_colors/font_color = Color(0.96862745, 0.8862745, 0.827451, 0.7647059)
+theme_override_colors/font_outline_color = Color(0.3600271, 0.14054787, 0.12586024, 1)
+theme_override_constants/outline_size = 9
+theme_override_fonts/font = ExtResource("4_4ge6i")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_tn317")
+text = "SUBMIT"
+
+[node name="fail" type="Label" parent="." unique_id=1724346834]
+visible = false
+offset_right = 1153.0
+offset_bottom = 75.0
+theme_override_font_sizes/font_size = 33
+text = "Name already Exists!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="." unique_id=116419775]
+wait_time = 3.327
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

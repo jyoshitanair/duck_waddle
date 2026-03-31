@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://cx7m4rlp80kv6"]
+
+[ext_resource type="Script" uid="uid://dgwep0tmaxkir" path="res://scripts/log.gd" id="1_spugk"]
+[ext_resource type="PackedScene" uid="uid://euq33sro0d4l" path="res://blender/rock.glb" id="2_pt1ea"]
+[ext_resource type="Texture2D" uid="uid://bpjscmowq32xr" path="res://images/rock.jpg" id="3_k0uux"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vx63x"]
+diffuse_mode = 3
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.6928918, 0.8519275, 0.87582564, 1)
+albedo_texture = ExtResource("3_k0uux")
+albedo_texture_force_srgb = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_k0uux"]
+size = Vector3(110.5562, 77.78558, 80.2559)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vx63x"]
+size = Vector3(6.08514, 3.92688, 3.3348923)
+
+[node name="log" type="Node3D" unique_id=432282748]
+script = ExtResource("1_spugk")
+
+[node name="Timer" type="Timer" parent="." unique_id=1008957388]
+wait_time = 0.5
+autostart = true
+
+[node name="rock" parent="." unique_id=463588390 instance=ExtResource("2_pt1ea")]
+transform = Transform3D(18, 5.6272995e-07, -3.0965032e-06, 0, 17.70993, 3.2184398, 3.1472205e-06, -3.2184398, 17.70993, -1.3038335, 7.9719505, -14.098141)
+metadata/_edit_group_ = true
+
+[node name="Cube_001" parent="rock" index="0" unique_id=2134729587]
+surface_material_override/0 = SubResource("StandardMaterial3D_vx63x")
+
+[node name="diee" type="Area3D" parent="." unique_id=155032931 groups=["log"]]
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="diee" unique_id=1099363027]
+transform = Transform3D(1, 0, 0, 0, 0.9683179, -0.24972096, 0, 0.24972096, 0.9683179, -11.182215, 4.5431824, -7.007235)
+shape = SubResource("BoxShape3D_k0uux")
+
+[node name="body_heh" type="RigidBody3D" parent="." unique_id=1822687708]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="body_heh" unique_id=214932650]
+transform = Transform3D(19.997837, 0.23333126, 0.17956972, -0.17615962, 19.255674, -5.402599, -0.23591673, 5.4004326, 19.255644, -14.878498, 3.9892693, -6.758456)
+shape = SubResource("BoxShape3D_vx63x")
+debug_color = Color(0.9169864, 0.20751533, 0.5050749, 0.41960785)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="diee" to="." method="_on_diee_body_entered"]
+
+[editable path="rock"]
